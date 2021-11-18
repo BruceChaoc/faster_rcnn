@@ -52,7 +52,6 @@ def hook_fn_forward(module, input, output):
         layer_viz = layer_viz.data.cpu()
         layer_viz = layer_viz.transpose(0, 1)
         layer_viz = layer_viz.transpose(1, 2)
-        layer_viz.save("/home/chaoc/Desktop/test_result.jpg")
         plt.subplot(2, 8, 1)
         plt.imshow(layer_viz)
         plt.axis("off")
