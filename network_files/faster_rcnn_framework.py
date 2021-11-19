@@ -343,9 +343,14 @@ class FasterRCNN(FasterRCNNBase):
             box_score_thresh, box_nms_thresh, box_detections_per_img)  # 0.05  0.5  100
 
         if image_mean is None:
-            image_mean = [0.485, 0.456, 0.406]
+            image_mean = [0.499, 0.499, 0.499]
         if image_std is None:
-            image_std = [0.229, 0.224, 0.225]
+            image_std = [0.287, 0.287, 0.287]
+
+        # if image_mean is None:
+        #     image_mean = [0.485, 0.456, 0.406]
+        # if image_std is None:
+        #     image_std = [0.229, 0.224, 0.225]
 
         # 对数据进行标准化，缩放，打包成batch等处理部分
         transform = GeneralizedRCNNTransform(min_size, max_size, image_mean, image_std)

@@ -67,14 +67,14 @@ def main():
     annotations_root="/home/chaoc/Desktop/data_set/test/IMAGES"
     for i in os.listdir(annotations_root):
         # load image
-        original_img = Image.open("/home/chaoc/Desktop/data_set/test/IMAGES/{}".format(i))
-
+#        original_img = Image.open("/home/chaoc/Desktop/data_set/test/IMAGES/{}".format(i))
+        original_img = Image.open("/home/chaoc/Desktop/data_set/train/IMAGES/{}".format('14.jpg'))
         # from pil image to tensor, do not normalize image
         data_transform = transforms.Compose([transforms.ToTensor()])
         img = data_transform(original_img)
         # expand batch dimension
         img = torch.unsqueeze(img, dim=0)
-     
+        model.eval()
         with torch.no_grad():
             # init
             img_height, img_width = img.shape[-2:]
@@ -94,7 +94,7 @@ def main():
                     predict_classes,
                     predict_scores,
                     category_index,
-                    thresh=0.06,
+                    thresh=0.05,
                     line_thickness=3)
             # 保存预测的图片结果
             original_img.save("/home/chaoc/Desktop/result/test_result{}".format(i))
